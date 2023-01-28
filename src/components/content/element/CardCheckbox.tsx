@@ -1,27 +1,38 @@
 interface CardCheckboxProps {
-  data: string;
-  isChecked?: boolean;
+    data: string;
+    checkboxId: string;
+    isOnNotificationButton: boolean;
+    setIsAllOnBusinessNumberButton: Function;
 }
-function CardCheckbox({ data, isChecked }: CardCheckboxProps) {
-  return (
-    <div className="box-header">
-      <div className="box-tit">
-        <h2 className="fz-18 fc-1">{data}</h2>
-      </div>
-      <div className="box-option">
-        <div className="comp-switch">
-          <input
-            type="checkbox"
-            id={isChecked ? "switch-01" : "switch-02"}
-            checked={isChecked ? true : false}
-          />
-          <label htmlFor="switch-01">
-            <i className="ico"></i>
-          </label>
+function CardCheckbox({ data, checkboxId, isOnNotificationButton, setIsAllOnBusinessNumberButton }: CardCheckboxProps) {
+    const handleAllCheckbox = (isChecked: boolean) => {
+        if (isChecked) {
+            setIsAllOnBusinessNumberButton(true);
+            return;
+        }
+        setIsAllOnBusinessNumberButton(false);
+    };
+
+    return (
+        <div className="box-header">
+            <div className="box-tit">
+                <h2 className="fz-18 fc-1">{data}</h2>
+            </div>
+            <div className="box-option">
+                <div className="comp-switch">
+                    <input
+                        type="checkbox"
+                        id={checkboxId}
+                        onChange={(e) => handleAllCheckbox(e.target.checked)}
+                        checked={isOnNotificationButton}
+                    />
+                    <label htmlFor="switch-01">
+                        <i className="ico"></i>
+                    </label>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default CardCheckbox;

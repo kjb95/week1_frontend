@@ -31,7 +31,7 @@ function SimpleCard({
               <dd>
                 <div
                   className={
-                    "htmlForm-group " + subContents ? "flex-container" : ""
+                    "form-group " + (subContents ? "flex-container" : "")
                   }
                 >
                   <span className="comp-txt">
